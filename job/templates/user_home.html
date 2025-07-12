@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+{% include 'user_navigation.html' %}
+
+<marquee style="font-family: 'Times New Roman'; font-size: 25px; color: rgb(201, 67, 4); background-color: rgb(214, 172, 137); font-weight: bold; margin-top: 1%;">
+    Profile
+</marquee>
+<hr>
+
+<form class="container mt-5" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label><b>First Name</b></label>
+            <input type="text" class="form-control" name="fname" value="{{ student.fname }}" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label><b>Last Name</b></label>
+            <input type="text" class="form-control" name="lname" value="{{ student.lname }}" required>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label><b>Contact No.</b></label>
+            <input type="text" class="form-control" name="contact" value="{{ student.mobile }}" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label><b>Company</b></label>
+            <input type="text" class="form-control" name="company" value="{{ student.company }}" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label><b>Email Address</b></label>
+        <input type="email" class="form-control" name="email" value="{{ student.username }}" required>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label><b>Gender</b></label>
+            <div style="border: 1px solid lightgrey; padding: 6px; border-radius: 6px;">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="genderMale" name="gender" class="custom-control-input" value="Male" {% if student.gender == "Male" %}checked{% endif %}>
+                    <label class="custom-control-label" for="genderMale">Male</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="genderFemale" name="gender" class="custom-control-input" value="Female" {% if student.gender == "Female" %}checked{% endif %}>
+                    <label class="custom-control-label" for="genderFemale">Female</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="genderOthers" name="gender" class="custom-control-input" value="Others" {% if student.gender == "Others" %}checked{% endif %}>
+                    <label class="custom-control-label" for="genderOthers">Others</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label><b>Image</b></label>
+            {% if student.image %}
+                <img src="{{ student.image.url }}" width="100" height="100" style="display: block; margin-bottom: 10px;">
+            {% endif %}
+            <input type="file" class="form-control" name="image" {% if not student.image %}required{% endif %} accept="image/*">
+        </div>
+    </div>
+
+    <input type="submit" value="Submit" class="btn btn-primary" style="margin-top: 2%; color: #fff; background-color: rgb(31, 31, 98); height: 40px; font-size: 15px;">
+</form>
+
+{% include 'footer.html' %}
+
+{% if error == "no" %}
+    <script>
+        alert("Profile updated successfully!");
+        window.location = "{% url 'user_home' %}";
+    </script>
+{% elif error == "yes" %}
+    <script>
+        alert("Something went wrong. Please try again.");
+    </script>
+{% endif %}
+
+{% endblock %}

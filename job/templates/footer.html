@@ -1,0 +1,30 @@
+{% load static %}
+
+<div class="mt-3" style = " color: rgb(174, 57, 3) ; background-color : rgb(214, 172, 137) ; font-weight: bold; width : 110% ; height : 250px">
+<div class="container">
+    <div class="row">
+            <div class="col-md-4 mt-3">
+                <h3>Contact Information</h3>
+                <p style="color : rgba(80, 32, 10, 0.874) ; font-size : 18px"><i class="fa fa-map-marker text-danger "></i> Lajpat Nagar B Sector, New Delhi</p>
+                <p style="color : rgba(80, 32, 10, 0.874) ; font-size : 18px"><i class="fa fa-envelope text-danger "></i> workforge12@gmail.com</p>
+                <p style="color : rgba(80, 32, 10, 0.874) ; font-size : 18px"><i class="fa fa-mobile text-danger "></i> P: +91 9462018318, 0145-2600927</p>
+                <p style="color : rgba(80, 32, 10, 0.874) ; font-size : 18px"><i class="fa fa-globe text-danger "></i> W; www.workforage.com</p>
+            </div>
+            <div class="col-md-4 mt-3">
+                <h3>Online Placement</h3>
+                <p style="color : rgba(80, 32, 10, 0.874) ; font-size : 15px">A job portal website connects employers with job seekers, offering a platform to post openings, apply for jobs, and match candidates based on skills and experience. It streamlines recruitment, saves time, and enhances accessibility to diverse opportunities across industries, making job hunting and hiring more efficient and user-friendly.</p>
+            </div>
+            <div class="col-md-4 mt-3">
+                <h3>Newsletter</h3>
+                <p style="color : rgba(80, 32, 10, 0.874) ; font-size : 18px">If you want any extra information then please enter your email id.</p>
+                <form method="post" class="form-inline">
+                    {% csrf_token %}
+                    <input type="email" name="emailid" placeholder="Email ID" required class="form-control mr-2">
+                    <input type="submit" value="Send" class="btn btn-primary">
+                </form>
+            </div>
+    </div>
+</div>
+
+</div>
+

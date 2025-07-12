@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+{% include 'user_navigation.html' %}
+<style>
+    tr{ text-align:center}
+</style>
+
+<marquee style="font-family : 'Times new roman' ; font-size : 25px ; color : rgb(201, 67, 4); ; background-color : rgb(214, 172, 137) ; font-weight : bold; margin-top : 1%">
+    apply for job
+</marquee>
+<hr>
+<div class="container shadow-lg py-2 mb-2">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+        <label class="font-weight-bold">Upload Resume</label>
+        <input type="file" class="form-control" name="resume">
+
+    </div>
+    <input type="submit" value="submit" class="btn btn-danger mt-3">
+</form>
+</div>
+
+{% if error == "close" %}
+    <script>
+        alert("Application lines got close, last date has over");
+        window.location = "{% url 'user_latestjobs' %}";
+    </script>
+{% endif %}
+
+{% if error == "notopen" %}
+<script>
+    alert("Application lines are not open");
+    window.location = "{% url 'user_latestjobs' %}";
+</script>
+{% endif %}
+
+{% if error == "done" %}
+    <script>
+        alert("Job application submitted successfully");
+        window.location = "{% url 'user_latestjobs' %}";
+    </script>
+{% endif %}
+
+    {% endblock %}

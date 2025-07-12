@@ -1,0 +1,15 @@
+<!-- job/templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Job Portal{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    {% block body %}
+    <!-- Content goes here -->
+    {% endblock %}
+</body>
+</html>
